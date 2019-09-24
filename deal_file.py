@@ -2,15 +2,17 @@ import os
 # 预处字符串
 def clear_comment(comment):
     comment = comment.strip(' ')
+    comment = comment.strip('i')
+    comment = comment.strip('I')
     comment = comment.replace('、', '')
     comment = comment.replace('~', '。')
     comment = comment.replace('～', '')
     comment = comment.replace('{"error_message": "EMPTY SENTENCE"}', '')
     comment = comment.replace('…', '')
     comment = comment.replace('\r', '')
-    comment = comment.replace('\t', ' ')
-    comment = comment.replace('\f', ' ')
-    # comment = comment.replace('\n', ' ')
+    comment = comment.replace('\t', '')
+    comment = comment.replace('\f', '')
+    # comment = comment.replace('\n', '')
     comment = comment.replace('/', '')
     comment = comment.replace('、', ' ')
     comment = comment.replace('/', '')
@@ -22,6 +24,13 @@ def clear_comment(comment):
     comment = comment.replace('了', '')
     comment = comment.replace('➕', '')
     comment = comment.replace('\ufeff', '')
+    comment = comment.replace(' the ', ' ')
+    comment = comment.replace(' a ', ' ')
+    comment = comment.replace(' of ', ' ')
+    comment = comment.replace(' is ', ' ')
+    comment = comment.replace(' I ', ' ')
+    comment = comment.replace(' i ', ' ')
+    comment = comment.replace(' to ', ' ')
     return comment
 
 # 获取文件夹下所有的翻译内容
@@ -43,6 +52,7 @@ def get_content(trn_wath):
             fd.close()
     return  file_content
 
+#建立文件
 def creat_file(content):
     fd = open("train_txt", 'w', encoding="Utf-8")
     fd.write(content)

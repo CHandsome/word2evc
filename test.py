@@ -4,11 +4,11 @@ import gensim
 
 model = gensim.models.Word2Vec.load('text.model')
 #输出词向量
-print(model['sets'])
+print(model.wv['sets'])
 #输出最相关的词
-res = model.most_similar("economy",topn=10)
+res = model.wv.most_similar("economy",topn=10)
 for item in res:
     print(item[0],item[1])
 #输出两个词的相似度
-sim = model.similarity("economy","according")
+sim = model.wv.similarity("economy","according")
 print(sim)
